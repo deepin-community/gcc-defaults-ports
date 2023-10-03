@@ -3,17 +3,16 @@ Section: devel
 Priority: standard
 Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 Uploaders: Matthias Klose <doko@debian.org>
-Standards-Version: 4.6.0
+Standards-Version: 4.6.2
 Build-Depends: m4, debhelper (>= 11),
-  dpkg-dev (>= 1.17.11),
-  gcc-11-base (>= 11.2.0-7~),
+  gcc-13-base (>= 13.2.0-2~),
   lsb-release
 Vcs-Browser: https://salsa.debian.org/toolchain-team/gcc-defaults/tree/ports
 Vcs-Git: https://salsa.debian.org/toolchain-team/gcc-defaults.git -b ports
 
 Package: cpp-alpha-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-alpha-linux-gnu ${reqv:cpp}, ${misc:Depends}
@@ -30,7 +29,7 @@ Description: GNU C preprocessor (cpp) for the alpha architecture
 
 Package: gcc-alpha-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-alpha-linux-gnu (= ${version:cpp}),
   gcc-${pv:gcc}-alpha-linux-gnu ${reqv:gcc},
@@ -45,7 +44,7 @@ Description: GNU C compiler for the alpha architecture
 
 Package: g++-alpha-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-alpha-linux-gnu (= ${version:cpp}),
   gcc-alpha-linux-gnu (= ${version:cpp}),
@@ -59,7 +58,7 @@ Description: GNU C++ compiler for the alpha architecture
 
 Package: gobjc-alpha-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-alpha-linux-gnu (>= ${version:cpp}),
   gcc-alpha-linux-gnu (>= ${version:cpp}),
@@ -75,7 +74,7 @@ Description: GNU Objective-C compiler for the alpha architecture
 
 Package: gobjc++-alpha-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-alpha-linux-gnu (>= ${version:cpp}),
   gcc-alpha-linux-gnu (>= ${version:cpp}),
@@ -92,7 +91,7 @@ Description: GNU Objective-C++ compiler for the alpha architecture
 
 Package: gfortran-alpha-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-alpha-linux-gnu (= ${version:cpp}),
   gcc-alpha-linux-gnu (= ${version:gcc}),
@@ -109,7 +108,7 @@ Description: GNU Fortran 95 compiler for the alpha architecture
 
 Package: gccgo-alpha-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-alpha-linux-gnu (>= ${version:cpp}),
   g++-alpha-linux-gnu (>= ${version:gcc}),
@@ -123,23 +122,9 @@ Description: Go compiler (based on GCC) for the alpha architecture
  This is a dependency package providing the default GNU Go cross-compiler
  for the alpha architecture.
 
-Package: gdc-alpha-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32
-Multi-Arch: foreign
-Depends: cpp-alpha-linux-gnu (>= ${version:cpp}),
-  gdc-${pv:gdc}-alpha-linux-gnu ${reqv:gdc},
-  ${misc:Depends}
-Description: GNU D compiler (based on GCC) for the alpha architecture
- This is the GNU D compiler, which compiles D on platforms supported by
- the gcc compiler. It uses the gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU D cross-compiler
- for the alpha architecture.
-
 Package: gm2-alpha-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-alpha-linux-gnu (>= ${version:cpp}),
   gm2-${pv:gm2}-alpha-linux-gnu ${reqv:gm2},
@@ -152,9 +137,120 @@ Description: GNU Modula-2 compiler (based on GCC) for the alpha architecture
  This is a dependency package providing the default GNU Modula-2 cross-compiler
  for the alpha architecture.
 
+Package: cpp-arc-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el x32
+Multi-Arch: foreign
+Section: interpreters
+Depends: cpp-${pv:cpp}-arc-linux-gnu ${reqv:cpp}, ${misc:Depends}
+Suggests: cpp-doc
+Description: GNU C preprocessor (cpp) for the arc architecture
+ The GNU C preprocessor is a macro processor that is used automatically
+ by the GNU C compiler to transform programs before actual compilation.
+ .
+ This package has been separated from gcc for the benefit of those who
+ require the preprocessor but not the cross-compiler for arc architecture.
+ .
+ This is a dependency package providing the default GNU C preprocessor
+ for the arc architecture.
+
+Package: gcc-arc-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el x32
+Multi-Arch: foreign
+Depends: cpp-arc-linux-gnu (= ${version:cpp}),
+  gcc-${pv:gcc}-arc-linux-gnu ${reqv:gcc},
+  ${misc:Depends}
+Recommends: libc6-dev-arc-cross | libc-dev-arc-cross
+Suggests: make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb-arc-linux-gnu, gcc-doc
+Description: GNU C compiler for the arc architecture
+ This is the GNU C compiler, a fairly portable optimizing compiler for C.
+ .
+ This is a dependency package providing the default GNU C cross-compiler
+ for the arc architecture.
+
+Package: g++-arc-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el x32
+Multi-Arch: foreign
+Depends: cpp-arc-linux-gnu (= ${version:cpp}),
+  gcc-arc-linux-gnu (= ${version:cpp}),
+  g++-${pv:gpp}-arc-linux-gnu ${reqv:gpp},
+  ${misc:Depends}
+Description: GNU C++ compiler for the arc architecture
+ This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
+ .
+ This is a dependency package providing the default GNU C++ cross-compiler
+ for the arc architecture.
+
+Package: gobjc-arc-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el x32
+Multi-Arch: foreign
+Depends: cpp-arc-linux-gnu (>= ${version:cpp}),
+  gcc-arc-linux-gnu (>= ${version:cpp}),
+  gobjc-${pv:gobjc}-arc-linux-gnu ${reqv:gobjc},
+  ${misc:Depends}
+Description: GNU Objective-C compiler for the arc architecture
+ This is the GNU Objective-C compiler, which compiles Objective-C on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Objective-C
+ cross-compiler for the arc architecture.
+
+Package: gobjc++-arc-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el x32
+Multi-Arch: foreign
+Depends: cpp-arc-linux-gnu (>= ${version:cpp}),
+  gcc-arc-linux-gnu (>= ${version:cpp}),
+  gobjc++-${pv:gobjcxx}-arc-linux-gnu ${reqv:gobjcxx},
+  ${misc:Depends}
+Recommends: g++-arc-linux-gnu (>= ${version:cpp}), gobjc-arc-linux-gnu (>= ${version:cpp})
+Description: GNU Objective-C++ compiler for the arc architecture
+ This is the GNU Objective-C++ compiler, which compiles
+ Objective-C++ on platforms supported by the gcc compiler. It uses the
+ gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Objective-C++
+ cross-compiler for the arc architecture.
+
+Package: gfortran-arc-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el x32
+Multi-Arch: foreign
+Depends: cpp-arc-linux-gnu (= ${version:cpp}),
+  gcc-arc-linux-gnu (= ${version:gcc}),
+  gfortran-${pv:gfort}-arc-linux-gnu ${reqv:gfort},
+  ${misc:Depends}
+Suggests: gfortran-doc
+Description: GNU Fortran 95 compiler for the arc architecture
+ This is the GNU Fortran 95 compiler, which compiles Fortran 95 on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Fortran 95
+ cross-compiler for the arc architecture.
+
+Package: gm2-arc-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el x32
+Multi-Arch: foreign
+Depends: cpp-arc-linux-gnu (>= ${version:cpp}),
+  gm2-${pv:gm2}-arc-linux-gnu ${reqv:gm2},
+  ${misc:Depends}
+Description: GNU Modula-2 compiler (based on GCC) for the arc architecture
+ This is the GNU Modula-2 compiler, which compiles Modula-2 on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Modula-2 cross-compiler
+ for the arc architecture.
+
 Package: cpp-hppa-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-hppa-linux-gnu ${reqv:cpp}, ${misc:Depends}
@@ -171,7 +267,7 @@ Description: GNU C preprocessor (cpp) for the hppa architecture
 
 Package: gcc-hppa-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-hppa-linux-gnu (= ${version:cpp}),
   gcc-${pv:gcc}-hppa-linux-gnu ${reqv:gcc},
@@ -186,7 +282,7 @@ Description: GNU C compiler for the hppa architecture
 
 Package: g++-hppa-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-hppa-linux-gnu (= ${version:cpp}),
   gcc-hppa-linux-gnu (= ${version:cpp}),
@@ -200,7 +296,7 @@ Description: GNU C++ compiler for the hppa architecture
 
 Package: gobjc-hppa-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-hppa-linux-gnu (>= ${version:cpp}),
   gcc-hppa-linux-gnu (>= ${version:cpp}),
@@ -216,7 +312,7 @@ Description: GNU Objective-C compiler for the hppa architecture
 
 Package: gobjc++-hppa-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-hppa-linux-gnu (>= ${version:cpp}),
   gcc-hppa-linux-gnu (>= ${version:cpp}),
@@ -233,7 +329,7 @@ Description: GNU Objective-C++ compiler for the hppa architecture
 
 Package: gfortran-hppa-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-hppa-linux-gnu (= ${version:cpp}),
   gcc-hppa-linux-gnu (= ${version:gcc}),
@@ -250,7 +346,7 @@ Description: GNU Fortran 95 compiler for the hppa architecture
 
 Package: gdc-hppa-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-hppa-linux-gnu (>= ${version:cpp}),
   gdc-${pv:gdc}-hppa-linux-gnu ${reqv:gdc},
@@ -264,7 +360,7 @@ Description: GNU D compiler (based on GCC) for the hppa architecture
 
 Package: gm2-hppa-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-hppa-linux-gnu (>= ${version:cpp}),
   gm2-${pv:gm2}-hppa-linux-gnu ${reqv:gm2},
@@ -279,7 +375,7 @@ Description: GNU Modula-2 compiler (based on GCC) for the hppa architecture
 
 Package: cpp-m68k-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 ppc64el i386 x32
 Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-m68k-linux-gnu ${reqv:cpp}, ${misc:Depends}
@@ -296,7 +392,7 @@ Description: GNU C preprocessor (cpp) for the m68k architecture
 
 Package: gcc-m68k-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 ppc64el i386 x32
 Multi-Arch: foreign
 Depends: cpp-m68k-linux-gnu (= ${version:cpp}),
   gcc-${pv:gcc}-m68k-linux-gnu ${reqv:gcc},
@@ -311,7 +407,7 @@ Description: GNU C compiler for the m68k architecture
 
 Package: g++-m68k-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 ppc64el i386 x32
 Multi-Arch: foreign
 Depends: cpp-m68k-linux-gnu (= ${version:cpp}),
   gcc-m68k-linux-gnu (= ${version:cpp}),
@@ -325,7 +421,7 @@ Description: GNU C++ compiler for the m68k architecture
 
 Package: gobjc-m68k-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 ppc64el i386 x32
 Multi-Arch: foreign
 Depends: cpp-m68k-linux-gnu (>= ${version:cpp}),
   gcc-m68k-linux-gnu (>= ${version:cpp}),
@@ -341,7 +437,7 @@ Description: GNU Objective-C compiler for the m68k architecture
 
 Package: gobjc++-m68k-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 ppc64el i386 x32
 Multi-Arch: foreign
 Depends: cpp-m68k-linux-gnu (>= ${version:cpp}),
   gcc-m68k-linux-gnu (>= ${version:cpp}),
@@ -358,7 +454,7 @@ Description: GNU Objective-C++ compiler for the m68k architecture
 
 Package: gfortran-m68k-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 ppc64el i386 x32
 Multi-Arch: foreign
 Depends: cpp-m68k-linux-gnu (= ${version:cpp}),
   gcc-m68k-linux-gnu (= ${version:gcc}),
@@ -373,23 +469,9 @@ Description: GNU Fortran 95 compiler for the m68k architecture
  This is a dependency package providing the default GNU Fortran 95
  cross-compiler for the m68k architecture.
 
-Package: gdc-m68k-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32
-Multi-Arch: foreign
-Depends: cpp-m68k-linux-gnu (>= ${version:cpp}),
-  gdc-${pv:gdc}-m68k-linux-gnu ${reqv:gdc},
-  ${misc:Depends}
-Description: GNU D compiler (based on GCC) for the m68k architecture
- This is the GNU D compiler, which compiles D on platforms supported by
- the gcc compiler. It uses the gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU D cross-compiler
- for the m68k architecture.
-
 Package: gm2-m68k-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 ppc64el i386 x32
 Multi-Arch: foreign
 Depends: cpp-m68k-linux-gnu (>= ${version:cpp}),
   gm2-${pv:gm2}-m68k-linux-gnu ${reqv:gm2},
@@ -638,150 +720,9 @@ Description: GNU D compiler (based on GCC) for the ppc64 architecture
  This is a dependency package providing the default GNU D cross-compiler
  for the ppc64 architecture.
 
-Package: cpp-riscv64-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 arm64 ppc64el
-Multi-Arch: foreign
-Section: interpreters
-Depends: cpp-${pv:cpp}-riscv64-linux-gnu ${reqv:cpp}, ${misc:Depends}
-Suggests: cpp-doc
-Description: GNU C preprocessor (cpp) for the riscv64 architecture
- The GNU C preprocessor is a macro processor that is used automatically
- by the GNU C compiler to transform programs before actual compilation.
- .
- This package has been separated from gcc for the benefit of those who
- require the preprocessor but not the cross-compiler for riscv64 architecture.
- .
- This is a dependency package providing the default GNU C preprocessor
- for the riscv64 architecture.
-
-Package: gcc-riscv64-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 arm64 ppc64el
-Multi-Arch: foreign
-Depends: cpp-riscv64-linux-gnu (= ${version:cpp}),
-  gcc-${pv:gcc}-riscv64-linux-gnu ${reqv:gcc},
-  ${misc:Depends}
-Recommends: libc6-dev-riscv64-cross | libc-dev-riscv64-cross
-Suggests: make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb-riscv64-linux-gnu, gcc-doc
-Description: GNU C compiler for the riscv64 architecture
- This is the GNU C compiler, a fairly portable optimizing compiler for C.
- .
- This is a dependency package providing the default GNU C cross-compiler
- for the riscv64 architecture.
-
-Package: g++-riscv64-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 arm64 ppc64el
-Multi-Arch: foreign
-Depends: cpp-riscv64-linux-gnu (= ${version:cpp}),
-  gcc-riscv64-linux-gnu (= ${version:cpp}),
-  g++-${pv:gpp}-riscv64-linux-gnu ${reqv:gpp},
-  ${misc:Depends}
-Description: GNU C++ compiler for the riscv64 architecture
- This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
- .
- This is a dependency package providing the default GNU C++ cross-compiler
- for the riscv64 architecture.
-
-Package: gobjc-riscv64-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 arm64 ppc64el
-Multi-Arch: foreign
-Depends: cpp-riscv64-linux-gnu (>= ${version:cpp}),
-  gcc-riscv64-linux-gnu (>= ${version:cpp}),
-  gobjc-${pv:gobjc}-riscv64-linux-gnu ${reqv:gobjc},
-  ${misc:Depends}
-Description: GNU Objective-C compiler for the riscv64 architecture
- This is the GNU Objective-C compiler, which compiles Objective-C on platforms
- supported by the gcc compiler. It uses the gcc backend to generate optimized
- code.
- .
- This is a dependency package providing the default GNU Objective-C
- cross-compiler for the riscv64 architecture.
-
-Package: gobjc++-riscv64-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 arm64 ppc64el
-Multi-Arch: foreign
-Depends: cpp-riscv64-linux-gnu (>= ${version:cpp}),
-  gcc-riscv64-linux-gnu (>= ${version:cpp}),
-  gobjc++-${pv:gobjcxx}-riscv64-linux-gnu ${reqv:gobjcxx},
-  ${misc:Depends}
-Recommends: g++-riscv64-linux-gnu (>= ${version:cpp}), gobjc-riscv64-linux-gnu (>= ${version:cpp})
-Description: GNU Objective-C++ compiler for the riscv64 architecture
- This is the GNU Objective-C++ compiler, which compiles
- Objective-C++ on platforms supported by the gcc compiler. It uses the
- gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU Objective-C++
- cross-compiler for the riscv64 architecture.
-
-Package: gfortran-riscv64-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 arm64 ppc64el
-Multi-Arch: foreign
-Depends: cpp-riscv64-linux-gnu (= ${version:cpp}),
-  gcc-riscv64-linux-gnu (= ${version:gcc}),
-  gfortran-${pv:gfort}-riscv64-linux-gnu ${reqv:gfort},
-  ${misc:Depends}
-Suggests: gfortran-doc
-Description: GNU Fortran 95 compiler for the riscv64 architecture
- This is the GNU Fortran 95 compiler, which compiles Fortran 95 on platforms
- supported by the gcc compiler. It uses the gcc backend to generate optimized
- code.
- .
- This is a dependency package providing the default GNU Fortran 95
- cross-compiler for the riscv64 architecture.
-
-Package: gccgo-riscv64-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 arm64 ppc64el
-Multi-Arch: foreign
-Depends: cpp-riscv64-linux-gnu (>= ${version:cpp}),
-  g++-riscv64-linux-gnu (>= ${version:gcc}),
-  gccgo-${pv:ggo}-riscv64-linux-gnu ${reqv:ggo},
-  ${misc:Depends}
-Suggests: gccgo-doc
-Description: Go compiler (based on GCC) for the riscv64 architecture
- This is the GNU Go compiler, which compiles Go on platforms supported by
- the gcc compiler. It uses the gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU Go cross-compiler
- for the riscv64 architecture.
-
-Package: gdc-riscv64-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 arm64 ppc64el
-Multi-Arch: foreign
-Depends: cpp-riscv64-linux-gnu (>= ${version:cpp}),
-  gdc-${pv:gdc}-riscv64-linux-gnu ${reqv:gdc},
-  ${misc:Depends}
-Description: GNU D compiler (based on GCC) for the riscv64 architecture
- This is the GNU D compiler, which compiles D on platforms supported by
- the gcc compiler. It uses the gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU D cross-compiler
- for the riscv64 architecture.
-
-Package: gm2-riscv64-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 arm64 ppc64el
-Multi-Arch: foreign
-Depends: cpp-riscv64-linux-gnu (>= ${version:cpp}),
-  gm2-${pv:gm2}-riscv64-linux-gnu ${reqv:gm2},
-  ${misc:Depends}
-Description: GNU Modula-2 compiler (based on GCC) for the riscv64 architecture
- This is the GNU Modula-2 compiler, which compiles Modula-2 on platforms
- supported by the gcc compiler. It uses the gcc backend to generate optimized
- code.
- .
- This is a dependency package providing the default GNU Modula-2 cross-compiler
- for the riscv64 architecture.
-
 Package: cpp-sh4-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-sh4-linux-gnu ${reqv:cpp}, ${misc:Depends}
@@ -798,7 +739,7 @@ Description: GNU C preprocessor (cpp) for the sh4 architecture
 
 Package: gcc-sh4-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-sh4-linux-gnu (= ${version:cpp}),
   gcc-${pv:gcc}-sh4-linux-gnu ${reqv:gcc},
@@ -813,7 +754,7 @@ Description: GNU C compiler for the sh4 architecture
 
 Package: g++-sh4-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-sh4-linux-gnu (= ${version:cpp}),
   gcc-sh4-linux-gnu (= ${version:cpp}),
@@ -827,7 +768,7 @@ Description: GNU C++ compiler for the sh4 architecture
 
 Package: gobjc-sh4-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-sh4-linux-gnu (>= ${version:cpp}),
   gcc-sh4-linux-gnu (>= ${version:cpp}),
@@ -843,7 +784,7 @@ Description: GNU Objective-C compiler for the sh4 architecture
 
 Package: gobjc++-sh4-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-sh4-linux-gnu (>= ${version:cpp}),
   gcc-sh4-linux-gnu (>= ${version:cpp}),
@@ -860,7 +801,7 @@ Description: GNU Objective-C++ compiler for the sh4 architecture
 
 Package: gfortran-sh4-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-sh4-linux-gnu (= ${version:cpp}),
   gcc-sh4-linux-gnu (= ${version:gcc}),
@@ -875,24 +816,10 @@ Description: GNU Fortran 95 compiler for the sh4 architecture
  This is a dependency package providing the default GNU Fortran 95
  cross-compiler for the sh4 architecture.
 
-Package: gdc-sh4-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32
-Multi-Arch: foreign
-Depends: cpp-sh4-linux-gnu (>= ${version:cpp}),
-  gdc-${pv:gdc}-sh4-linux-gnu ${reqv:gdc},
-  ${misc:Depends}
-Description: GNU D compiler (based on GCC) for the sh4 architecture
- This is the GNU D compiler, which compiles D on platforms supported by
- the gcc compiler. It uses the gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU D cross-compiler
- for the sh4 architecture.
-
 
 Package: cpp-sparc64-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-sparc64-linux-gnu ${reqv:cpp}, ${misc:Depends}
@@ -909,7 +836,7 @@ Description: GNU C preprocessor (cpp) for the sparc64 architecture
 
 Package: gcc-sparc64-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-sparc64-linux-gnu (= ${version:cpp}),
   gcc-${pv:gcc}-sparc64-linux-gnu ${reqv:gcc},
@@ -924,7 +851,7 @@ Description: GNU C compiler for the sparc64 architecture
 
 Package: g++-sparc64-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-sparc64-linux-gnu (= ${version:cpp}),
   gcc-sparc64-linux-gnu (= ${version:cpp}),
@@ -938,7 +865,7 @@ Description: GNU C++ compiler for the sparc64 architecture
 
 Package: gobjc-sparc64-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-sparc64-linux-gnu (>= ${version:cpp}),
   gcc-sparc64-linux-gnu (>= ${version:cpp}),
@@ -954,7 +881,7 @@ Description: GNU Objective-C compiler for the sparc64 architecture
 
 Package: gobjc++-sparc64-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-sparc64-linux-gnu (>= ${version:cpp}),
   gcc-sparc64-linux-gnu (>= ${version:cpp}),
@@ -971,7 +898,7 @@ Description: GNU Objective-C++ compiler for the sparc64 architecture
 
 Package: gfortran-sparc64-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-sparc64-linux-gnu (= ${version:cpp}),
   gcc-sparc64-linux-gnu (= ${version:gcc}),
@@ -988,7 +915,7 @@ Description: GNU Fortran 95 compiler for the sparc64 architecture
 
 Package: gccgo-sparc64-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-sparc64-linux-gnu (>= ${version:cpp}),
   g++-sparc64-linux-gnu (>= ${version:gcc}),
@@ -1002,23 +929,9 @@ Description: Go compiler (based on GCC) for the sparc64 architecture
  This is a dependency package providing the default GNU Go cross-compiler
  for the sparc64 architecture.
 
-Package: gdc-sparc64-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32
-Multi-Arch: foreign
-Depends: cpp-sparc64-linux-gnu (>= ${version:cpp}),
-  gdc-${pv:gdc}-sparc64-linux-gnu ${reqv:gdc},
-  ${misc:Depends}
-Description: GNU D compiler (based on GCC) for the sparc64 architecture
- This is the GNU D compiler, which compiles D on platforms supported by
- the gcc compiler. It uses the gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU D cross-compiler
- for the sparc64 architecture.
-
 Package: gm2-sparc64-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Multi-Arch: foreign
 Depends: cpp-sparc64-linux-gnu (>= ${version:cpp}),
   gm2-${pv:gm2}-sparc64-linux-gnu ${reqv:gm2},
@@ -1033,7 +946,7 @@ Description: GNU Modula-2 compiler (based on GCC) for the sparc64 architecture
 
 Package: gcc-multilib-sparc64-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Depends: cpp-sparc64-linux-gnu (= ${version:cpp}),
   gcc-sparc64-linux-gnu (= ${version:gcc}),
   gcc-${pv:gcc}-multilib-sparc64-linux-gnu ${reqv:gcc},
@@ -1048,7 +961,7 @@ Description: GNU C compiler for the sparc64 architecture
 
 Package: g++-multilib-sparc64-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Depends: cpp-sparc64-linux-gnu (= ${version:cpp}),
   g++-sparc64-linux-gnu (= ${version:gpp}),
   gcc-multilib-sparc64-linux-gnu (= ${version:gcc}),
@@ -1062,7 +975,7 @@ Description: GNU C++ compiler for the sparc64 architecture
 
 Package: gobjc-multilib-sparc64-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Depends: cpp-sparc64-linux-gnu (>= ${version:cpp}),
   gobjc-sparc64-linux-gnu (>= ${version:gobjc}),
   gcc-multilib-sparc64-linux-gnu (>= ${version:cpp}),
@@ -1078,7 +991,7 @@ Description: GNU Objective-C compiler for the sparc64 architecture
 
 Package: gobjc++-multilib-sparc64-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Depends: cpp-sparc64-linux-gnu (>= ${version:cpp}),
   gcc-multilib-sparc64-linux-gnu (>= ${version:cpp}),
   gobjc++-sparc64-linux-gnu (>= ${version:gobjcxx}),
@@ -1096,7 +1009,7 @@ Description: GNU Objective-C++ compiler for the sparc64 architecture
 
 Package: gfortran-multilib-sparc64-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Depends: cpp-sparc64-linux-gnu (= ${version:cpp}),
   gcc-multilib-sparc64-linux-gnu (= ${version:gcc}),
   gfortran-sparc64-linux-gnu (= ${version:gfort}),
@@ -1113,7 +1026,7 @@ Description: GNU Fortran 95 compiler for the sparc64 architecture
 
 Package: gccgo-multilib-sparc64-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32
+Architecture: amd64 arm64 i386 ppc64el x32
 Depends: cpp-sparc64-linux-gnu (>= ${version:cpp}),
   g++-multilib-sparc64-linux-gnu (>= ${version:gcc}),
   gccgo-sparc64-linux-gnu (>= ${version:ggo}),
@@ -1127,23 +1040,10 @@ Description: Go compiler (based on GCC) for the sparc64 architecture
  This is a dependency package providing the default GNU Go cross-compiler
  for the sparc64 architecture.
 
-Package: gdc-multilib-sparc64-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32
-Depends: cpp-sparc64-linux-gnu (>= ${version:cpp}),
-  gdc-${pv:gdc}-multilib-sparc64-linux-gnu ${reqv:gdc},
-  gdc-sparc64-linux-gnu (>= ${version:gdc}),
-  ${misc:Depends}
-Description: GNU D compiler (based on GCC) for the sparc64 architecture
- This is the GNU D compiler, which compiles D on platforms supported by
- the gcc compiler. It uses the gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU D cross-compiler
- for the sparc64 architecture.
 
 Package: cpp-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-powerpc-linux-gnu ${reqv:cpp}, ${misc:Depends}
@@ -1160,7 +1060,7 @@ Description: GNU C preprocessor (cpp) for the powerpc architecture
 
 Package: gcc-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Multi-Arch: foreign
 Depends: cpp-powerpc-linux-gnu (= ${version:cpp}),
   gcc-${pv:gcc}-powerpc-linux-gnu ${reqv:gcc},
@@ -1175,7 +1075,7 @@ Description: GNU C compiler for the powerpc architecture
 
 Package: g++-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Multi-Arch: foreign
 Depends: cpp-powerpc-linux-gnu (= ${version:cpp}),
   gcc-powerpc-linux-gnu (= ${version:cpp}),
@@ -1189,7 +1089,7 @@ Description: GNU C++ compiler for the powerpc architecture
 
 Package: gobjc-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Multi-Arch: foreign
 Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
   gcc-powerpc-linux-gnu (>= ${version:cpp}),
@@ -1205,7 +1105,7 @@ Description: GNU Objective-C compiler for the powerpc architecture
 
 Package: gobjc++-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Multi-Arch: foreign
 Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
   gcc-powerpc-linux-gnu (>= ${version:cpp}),
@@ -1222,7 +1122,7 @@ Description: GNU Objective-C++ compiler for the powerpc architecture
 
 Package: gfortran-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Multi-Arch: foreign
 Depends: cpp-powerpc-linux-gnu (= ${version:cpp}),
   gcc-powerpc-linux-gnu (= ${version:gcc}),
@@ -1239,7 +1139,7 @@ Description: GNU Fortran 95 compiler for the powerpc architecture
 
 Package: gccgo-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Multi-Arch: foreign
 Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
   g++-powerpc-linux-gnu (>= ${version:gcc}),
@@ -1255,7 +1155,7 @@ Description: Go compiler (based on GCC) for the powerpc architecture
 
 Package: gdc-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Multi-Arch: foreign
 Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
   gdc-${pv:gdc}-powerpc-linux-gnu ${reqv:gdc},
@@ -1269,7 +1169,7 @@ Description: GNU D compiler (based on GCC) for the powerpc architecture
 
 Package: gcc-multilib-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Depends: cpp-powerpc-linux-gnu (= ${version:cpp}),
   gcc-powerpc-linux-gnu (= ${version:gcc}),
   gcc-${pv:gcc}-multilib-powerpc-linux-gnu ${reqv:gcc},
@@ -1284,7 +1184,7 @@ Description: GNU C compiler for the powerpc architecture
 
 Package: g++-multilib-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Depends: cpp-powerpc-linux-gnu (= ${version:cpp}),
   g++-powerpc-linux-gnu (= ${version:gpp}),
   gcc-multilib-powerpc-linux-gnu (= ${version:gcc}),
@@ -1298,7 +1198,7 @@ Description: GNU C++ compiler for the powerpc architecture
 
 Package: gobjc-multilib-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
   gobjc-powerpc-linux-gnu (>= ${version:gobjc}),
   gcc-multilib-powerpc-linux-gnu (>= ${version:cpp}),
@@ -1314,7 +1214,7 @@ Description: GNU Objective-C compiler for the powerpc architecture
 
 Package: gobjc++-multilib-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
   gcc-multilib-powerpc-linux-gnu (>= ${version:cpp}),
   gobjc++-powerpc-linux-gnu (>= ${version:gobjcxx}),
@@ -1332,7 +1232,7 @@ Description: GNU Objective-C++ compiler for the powerpc architecture
 
 Package: gfortran-multilib-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Depends: cpp-powerpc-linux-gnu (= ${version:cpp}),
   gcc-multilib-powerpc-linux-gnu (= ${version:gcc}),
   gfortran-powerpc-linux-gnu (= ${version:gfort}),
@@ -1349,7 +1249,7 @@ Description: GNU Fortran 95 compiler for the powerpc architecture
 
 Package: gccgo-multilib-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
   g++-multilib-powerpc-linux-gnu (>= ${version:gcc}),
   gccgo-powerpc-linux-gnu (>= ${version:ggo}),
@@ -1365,7 +1265,7 @@ Description: Go compiler (based on GCC) for the powerpc architecture
 
 Package: gdc-multilib-powerpc-linux-gnu
 Priority: optional
-Architecture: amd64 i386 x32 ppc64el
+Architecture: amd64 arm64 i386 x32 ppc64el
 Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
   gdc-${pv:gdc}-multilib-powerpc-linux-gnu ${reqv:gdc},
   gdc-powerpc-linux-gnu (>= ${version:gdc}),

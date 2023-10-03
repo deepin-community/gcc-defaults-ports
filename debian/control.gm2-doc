@@ -1,0 +1,12 @@
+
+Package: gm2-doc
+Section: doc
+Architecture: any
+Priority: optional
+Depends: gm2-${pv:gm2}-doc ${reqv:gm2}, ${misc:Depends}
+Suggests: gm2 (>= ${version:gm2})
+Breaks: gm2-12-doc (<< 12.2.0-11), gm2-13-doc (<< 13-20221226-1)
+Replaces: gm2-12-doc (<< 12.2.0-11), gm2-13-doc (<< 13-20221226-1)
+Description: Documentation for the GNU Modula-2 compiler
+ Documentation for the GNU Modula-2 compiler in info format (dependency
+ package).

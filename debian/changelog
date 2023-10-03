@@ -1,3 +1,68 @@
+gcc-defaults-ports (1.208) unstable; urgency=medium
+
+  * Bump version to 13.2.1.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 12 Aug 2023 17:17:47 +0200
+
+gcc-defaults-ports (1.207) unstable; urgency=medium
+
+  * Build more cross packages on ppc64el.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 12 Aug 2023 15:05:44 +0200
+
+gcc-defaults-ports (1.206) unstable; urgency=medium
+
+  * Bump GCC 13 version to 13.2.0.
+  * Build alpha hppa m68k powerpc sh4 sparc64 cross packages on arm64
+    and ppc64el.  Closes: #969195.
+  * Build riscv64 packages from this source package.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 12 Aug 2023 01:01:02 +0200
+
+gcc-defaults-ports (1.205) unstable; urgency=medium
+
+  * Default to GCC 13.
+  * Bump standards version.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 13 Jul 2023 14:47:50 +0200
+
+gcc-defaults-ports (1.204) unstable; urgency=medium
+
+  * Provide an unversioned lto-dump binary.
+  * Remove obsolete parts from maintainer scripts.
+  * Fix control file generation for not-built gdc packages.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 08 Jan 2023 07:59:17 +0100
+
+gcc-defaults-ports (1.203) unstable; urgency=medium
+
+  * Don't build gdc-arc-linux-gnu and gccgo-arc-linux-gnu.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 05 Oct 2022 09:48:13 +0200
+
+gcc-defaults-ports (1.202) unstable; urgency=medium
+
+  * Build packages for arc-linux-gnu.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 04 Oct 2022 11:46:44 +0200
+
+gcc-defaults-ports (1.201) unstable; urgency=medium
+
+  * Stop building gdc on alpha, m68k, sh4 and sparc64.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 31 Aug 2022 10:19:40 +0200
+
+gcc-defaults-ports (1.200) unstable; urgency=medium
+
+  * Default to GCC 12.
+  * Bump GCC 12 version to 12.2.0.
+  * Bump GCC 11 version to 11.3.0.
+  * Stop building gccbrig, removed in GCC 12.
+  * Bump the gcc-N-base build dependency.
+  * Bump standards version.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 30 Aug 2022 10:39:29 +0200
+
 gcc-defaults-ports (1.191) unstable; urgency=medium
 
   * Default to GCC 11.

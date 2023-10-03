@@ -178,6 +178,15 @@ REL_NO_1030	:= $(shell expr $(VMINOR) - 190)$(REL_EXT)
 REL_NO_1110	:= $(shell expr $(VMINOR) - 192)$(REL_EXT)
 REL_NO_1120	:= $(shell expr $(VMINOR) - 192)$(REL_EXT)
 
+REL_NO_1200	:= $(shell expr $(VMINOR) - 196)$(REL_EXT)
+REL_NO_1210	:= $(shell expr $(VMINOR) - 197)$(REL_EXT)
+REL_NO_1220	:= $(shell expr $(VMINOR) - 199)$(REL_EXT)
+REL_NO_1230	:= $(shell expr $(VMINOR) - 206)$(REL_EXT)
+
+REL_NO_1300	:= $(shell expr $(VMINOR) - 203)$(REL_EXT)
+REL_NO_1310	:= $(shell expr $(VMINOR) - 203)$(REL_EXT)
+REL_NO_1320	:= $(shell expr $(VMINOR) - 207)$(REL_EXT)
+
 # minimum required gcc-X.Y versions
 REQV_295	:= (>= 1:2.95.4-16)
 REQV_296	:= 
@@ -201,8 +210,10 @@ REQV_6		:= (>= 6.4.0-1~)
 REQV_7		:= (>= 7.3.0-11~)
 REQV_8		:= (>= 8.4.0-1~)
 REQV_9		:= (>= 9.3.0-13~)
-REQV_10		:= (>= 10.3.0-1~)
-REQV_11		:= (>= 11.2.0-1~)
+REQV_10		:= (>= 10.4.0-1~)
+REQV_11		:= (>= 11.3.0-4~)
+REQV_12		:= (>= 12.3.0-1~)
+REQV_13		:= (>= 13.2.0-2~)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -214,11 +225,11 @@ endif
 DEB_HOST_MULTIARCH	:= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
 all_archs_mips = mips mipsel mipsn32 mipsn32el mips64 mips64el mipsr6 mipsr6el mipsn32r6 mipsn32r6el mips64r6 mips64r6el
-all_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k or1k powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386 \
+all_archs  = alpha arc amd64 armel armhf arm64 hppa i386 ia64 m68k or1k powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386 \
 	     $(all_archs_mips)
 
-gcc10_archs =
-gcc11_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k or1k powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386 \
+gcc12_archs =
+gcc13_archs  = alpha arc amd64 armel armhf arm64 hppa i386 ia64 m68k or1k powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386 \
 	     $(all_archs_mips)
 
 gnat_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k or1k powerpc ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386 \
@@ -226,84 +237,84 @@ gnat_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k or1k powerpc ppc
 gnat9_archs  =
 
 # CV_XXX is the complete version number, including the release, without epoch
-CV_CPP		:= 11.2.0-$(REL_NO_1120)
-CV_GCC		:= 11.2.0-$(REL_NO_1120)
-CV_GPP		:= 11.2.0-$(REL_NO_1120)
-CV_GOBJC	:= 11.2.0-$(REL_NO_1120)
-CV_GOBJCXX	:= 11.2.0-$(REL_NO_1120)
-CV_GFORT	:= 11.2.0-$(REL_NO_1120)
-CV_GGO		:= 11.2.0-$(REL_NO_1120)
-CV_GNAT		:= 11.2.0-$(REL_NO_1120)
-CV_GDC		:= 11.2.0-$(REL_NO_1120)
-CV_GM2		:= 11.2.0-$(REL_NO_1120)
-CV_BRIG		:= 11.2.0-$(REL_NO_1120)
-CV_OFFL		:= 11.2.0-$(REL_NO_1120)
+CV_CPP		:= 13.2.1-$(REL_NO_1320)
+CV_GCC		:= 13.2.1-$(REL_NO_1320)
+CV_GPP		:= 13.2.1-$(REL_NO_1320)
+CV_GOBJC	:= 13.2.1-$(REL_NO_1320)
+CV_GOBJCXX	:= 13.2.1-$(REL_NO_1320)
+CV_GFORT	:= 13.2.1-$(REL_NO_1320)
+CV_GGO		:= 13.2.1-$(REL_NO_1320)
+CV_GNAT		:= 13.2.1-$(REL_NO_1320)
+CV_GDC		:= 13.2.1-$(REL_NO_1320)
+CV_GM2		:= 13.2.1-$(REL_NO_1320)
+CV_BRIG		:= 13.2.1-$(REL_NO_1320)
+CV_OFFL		:= 13.2.1-$(REL_NO_1320)
 
 $(foreach a, $(all_archs), \
   $(foreach v, CV_CPP CV_GCC CV_GPP CV_GOBJC CV_GOBJCXX CV_GFORT CV_GGO CV_GNAT CV_GDC CV_GM2 CV_BRIG CV_OFFL, \
     $(eval $(v)_$(a) = $(call $(v)))))
 
-ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc10_archs)))
-  CV_CPP		:= 10.3.0-$(REL_NO_1030)
-  CV_GCC		:= 10.3.0-$(REL_NO_1030)
-  CV_GPP		:= 10.3.0-$(REL_NO_1030)
-  CV_GOBJC		:= 10.3.0-$(REL_NO_1030)
-  CV_GOBJCXX		:= 10.3.0-$(REL_NO_1030)
-  CV_GFORT		:= 10.3.0-$(REL_NO_1030)
-  CV_GGO		:= 10.3.0-$(REL_NO_1030)
-  CV_GDC		:= 10.3.0-$(REL_NO_1030)
-  CV_GM2		:= 10.3.0-$(REL_NO_1030)
-  CV_BRIG		:= 10.3.0-$(REL_NO_1030)
-  CV_OFFL		:= 10.3.0-$(REL_NO_1030)
-  $(foreach a, $(gcc10_archs), \
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc12_archs)))
+  CV_CPP		:= 12.3.0-$(REL_NO_1230)
+  CV_GCC		:= 12.3.0-$(REL_NO_1230)
+  CV_GPP		:= 12.3.0-$(REL_NO_1230)
+  CV_GOBJC		:= 12.3.0-$(REL_NO_1230)
+  CV_GOBJCXX		:= 12.3.0-$(REL_NO_1230)
+  CV_GFORT		:= 12.3.0-$(REL_NO_1230)
+  CV_GGO		:= 12.3.0-$(REL_NO_1230)
+  CV_GDC		:= 12.3.0-$(REL_NO_1230)
+  CV_GM2		:= 12.3.0-$(REL_NO_1230)
+  CV_BRIG		:= 12.3.0-$(REL_NO_1230)
+  CV_OFFL		:= 12.3.0-$(REL_NO_1230)
+  $(foreach a, $(gcc12_archs), \
     $(foreach v, CV_CPP CV_GCC CV_GPP CV_GOBJC CV_GOBJCXX CV_GFORT CV_GGO CV_GDC CV_GM2 CV_BRIG CV_OFFL, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
 
-ifneq (,$(filter $(DEB_HOST_ARCH), $(gnat10_archs)))
-  CV_GNAT		:= 10.3.0-$(REL_NO_1030)
-  $(foreach a, $(gnat5_archs), \
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gnat12_archs)))
+  CV_GNAT		:= 12.3.0-$(REL_NO_1230)
+  $(foreach a, $(gnat11_archs), \
     $(foreach v, CV_GNAT, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
 
-REQV_CPP	= $(REQV_11)
-REQV_GCC	= $(REQV_11)
-REQV_GPP	= $(REQV_11)
-REQV_GOBJC	= $(REQV_11)
-REQV_GOBJCXX	= $(REQV_11)
-REQV_GFORT	= $(REQV_11)
-REQV_GGO	= $(REQV_11)
-REQV_GNAT	= $(REQV_11)
-REQV_GDC	= $(REQV_11)
-REQV_GM2	= $(REQV_11)
-REQV_BRIG	= $(REQV_11)
-REQV_OFFL	= $(REQV_11)
+REQV_CPP	= $(REQV_13)
+REQV_GCC	= $(REQV_13)
+REQV_GPP	= $(REQV_13)
+REQV_GOBJC	= $(REQV_13)
+REQV_GOBJCXX	= $(REQV_13)
+REQV_GFORT	= $(REQV_13)
+REQV_GGO	= $(REQV_13)
+REQV_GNAT	= $(REQV_13)
+REQV_GDC	= $(REQV_13)
+REQV_GM2	= $(REQV_13)
+REQV_BRIG	= $(REQV_13)
+REQV_OFFL	= $(REQV_13)
 $(foreach a, $(all_archs), \
   $(foreach v, REQV_CPP REQV_GCC REQV_GPP REQV_GOBJC REQV_GOBJCXX REQV_GFORT REQV_GGO REQV_GNAT REQV_GDC REQV_GM2 REQV_BRIG REQV_OFFL, \
     $(eval $(v)_$(a) = $(call $(v)))))
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc10_archs)))
-  REQV_CPP	= $(REQV_10)
-  REQV_GCC	= $(REQV_10)
-  REQV_GPP	= $(REQV_10)
-  REQV_GOBJC	= $(REQV_10)
-  REQV_GOBJCXX	= $(REQV_10)
-  REQV_GFORT	= $(REQV_10)
-  REQV_GGO	= $(REQV_10)
-  REQV_GNAT	= $(REQV_10)
-  REQV_GDC	= $(REQV_10)
-  REQV_GM2	= $(REQV_10)
-  REQV_BRIG	= $(REQV_10)
-  REQV_OFFL	= $(REQV_10)
-  $(foreach a, $(gcc9_archs), \
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc12_archs)))
+  REQV_CPP	= $(REQV_12)
+  REQV_GCC	= $(REQV_12)
+  REQV_GPP	= $(REQV_12)
+  REQV_GOBJC	= $(REQV_12)
+  REQV_GOBJCXX	= $(REQV_12)
+  REQV_GFORT	= $(REQV_12)
+  REQV_GGO	= $(REQV_12)
+  REQV_GNAT	= $(REQV_12)
+  REQV_GDC	= $(REQV_12)
+  REQV_GM2	= $(REQV_12)
+  REQV_BRIG	= $(REQV_12)
+  REQV_OFFL	= $(REQV_12)
+  $(foreach a, $(gcc12_archs), \
     $(foreach v, REQV_CPP REQV_GCC REQV_GPP REQV_GOBJC REQV_GOBJCXX REQV_GFORT REQV_GGO REQV_GDC REQV_GM2 REQV_BRIG REQV_OFFL, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gnat10_archs)))
-  REQV_GNAT	= $(REQV_10)
-  $(foreach a, $(gnat10_archs), \
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gnat12_archs)))
+  REQV_GNAT	= $(REQV_12)
+  $(foreach a, $(gnat12_archs), \
     $(foreach v, REQV_GNAT, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
@@ -325,9 +336,14 @@ go_archs = alpha amd64 arm64 armel armhf i386 ia64 \
 	$(all_archs_mips) \
 	powerpc ppc64 ppc64el riscv64 s390 s390x sparc sparc64 x32
 
+d_archs = amd64 arm64 armel armhf i386 \
+	$(all_archs_mips) \
+	powerpc ppc64 ppc64el riscv64 s390x x32
+phobos_archs = $(filter-out powerpc ppc64 ppc64el, $(d_archs))
+
 go_multilib_archs = $(filter $(go_archs), $(filter-out armel armhf, $(multilib_archs)))
 
-d_multilib_archs = $(filter-out armel, $(multilib_archs))
+d_multilib_archs = $(filter $(d_archs), $(filter-out armel sparc64, $(multilib_archs)))
 
 ada_archs = alpha amd64 arm64 armel armhf hppa i386 ia64 m68k \
 	$(all_archs_mips) \
@@ -336,34 +352,31 @@ ada_archs = alpha amd64 arm64 armel armhf hppa i386 ia64 m68k \
 
 nvptx_archs = amd64 ppc64el
 amdgcn_archs = amd64
-brig_archs = amd64 i386 x32
 
 hppa64_archs = amd64 hppa i386 x32
-phobos_archs = amd64 armel armhf arm64 i386 x32 kfreebsd-amd64 kfreebsd-i386 \
-	hppa riscv64 s390x \
-	$(all_archs_mips) \
 
-m2_archs = alpha amd64 arm64 armel armhf i386 ia64 \
+m2_archs = alpha arc amd64 arm64 armel armhf i386 ia64 \
 	$(all_archs_mips) \
 	ppc64el riscv64 s390 s390x sparc64
 
 mipsen_archs = amd64 i386 x32 mips64el mipsel mips64r6el arm64 ppc64el
 
-HOST_ARCHS_alpha = amd64 i386 x32
+HOST_ARCHS_alpha = amd64 arm64 i386 ppc64el x32
+HOST_ARCHS_arc = amd64 arm64 i386 ppc64el x32
 HOST_ARCHS_amd64 = arm64 i386 ppc64el x32
 HOST_ARCHS_armhf = amd64 i386 x32 arm64 ppc64el
 HOST_ARCHS_armel = amd64 i386 x32 arm64 ppc64el
 HOST_ARCHS_arm64 = amd64 i386 x32 ppc64el
-HOST_ARCHS_hppa = amd64 i386 x32
+HOST_ARCHS_hppa = amd64 arm64 i386 ppc64el x32
 HOST_ARCHS_i386 = amd64 arm64 ppc64el x32
-HOST_ARCHS_m68k = amd64 i386 x32
-HOST_ARCHS_powerpc = amd64 i386 x32 ppc64el
+HOST_ARCHS_m68k = amd64 arm64 ppc64el i386 x32
+HOST_ARCHS_powerpc = amd64 arm64 i386 x32 ppc64el
 HOST_ARCHS_ppc64 = amd64 i386 x32 ppc64el
 HOST_ARCHS_ppc64el = amd64 i386 x32 ppc64 arm64
 HOST_ARCHS_riscv64 = amd64 i386 x32 arm64 ppc64el
 HOST_ARCHS_s390x = amd64 i386 x32 arm64 ppc64el
-HOST_ARCHS_sh4 = amd64 i386 x32
-HOST_ARCHS_sparc64 = amd64 i386 x32
+HOST_ARCHS_sh4 = amd64 arm64 i386 ppc64el x32
+HOST_ARCHS_sparc64 = amd64 arm64 i386 ppc64el x32
 HOST_ARCHS_x32 = amd64 arm64 i386 ppc64el
 $(foreach a, $(all_archs_mips), \
   $(eval HOST_ARCHS_$(a) = $(filter-out $(a), $(mipsen_archs))) \
@@ -372,17 +385,32 @@ $(foreach a, $(all_archs_mips), \
 ifeq (,$(CROSS_ARCHS))
   ifeq ($(SOURCE),gcc-defaults)
     ifneq (,$(filter $(DEB_HOST_ARCH),amd64 i386 x32))
-      CROSS_ARCHS = s390x ppc64el arm64 armhf armel \
+      CROSS_ARCHS = s390x ppc64el arm64 armhf armel riscv64 \
 	$(if $(filter $(vendor), Ubuntu), powerpc) \
         $(if $(filter $(DEB_HOST_ARCH), i386 x32), amd64) \
         $(if $(filter $(DEB_HOST_ARCH), amd64 x32), i386)
     else ifeq ($(DEB_HOST_ARCH),arm64)
-      CROSS_ARCHS = amd64 armel armhf i386 ppc64el s390x
+      CROSS_ARCHS = amd64 armel armhf i386 ppc64el riscv64 s390x \
+	$(if $(filter $(vendor), Ubuntu), powerpc)
     else ifeq ($(DEB_HOST_ARCH),ppc64)
       CROSS_ARCHS = ppc64el
     else ifeq ($(DEB_HOST_ARCH),ppc64el)
       CROSS_ARCHS = amd64 i386 $(if $(filter $(vendor), Ubuntu), powerpc) \
-	armel armhf arm64 s390x
+	armel armhf arm64 riscv64 s390x
+    else
+      CROSS_ARCHS =
+    endif
+  else ifeq ($(SOURCE),gcc-defaults-ports)
+    ifneq (,$(filter $(DEB_HOST_ARCH),amd64 i386 x32))
+      CROSS_ARCHS ?= alpha arc hppa m68k ppc64 sh4 sparc64 \
+		$(if $(filter $(vendor), Ubuntu),, powerpc) \
+		$(if $(filter $(DEB_HOST_ARCH), amd64 i386), x32)
+    else ifeq ($(DEB_HOST_ARCH),arm64)
+      CROSS_ARCHS ?= alpha arc hppa m68k sh4 sparc64 x32 \
+	       $(if $(filter $(vendor), Ubuntu),, powerpc)
+    else ifeq ($(DEB_HOST_ARCH),ppc64el)
+      CROSS_ARCHS ?= alpha arc hppa m68k sh4 sparc64 x32 \
+		$(if $(filter $(vendor), Ubuntu),, powerpc)
     else
       CROSS_ARCHS =
     endif
@@ -392,18 +420,8 @@ ifeq (,$(CROSS_ARCHS))
     else
       CROSS_ARCHS =
     endif
-  else # -ports package
-    ifneq (,$(filter $(DEB_HOST_ARCH),amd64 i386 x32))
-      CROSS_ARCHS  ?= alpha hppa m68k ppc64 riscv64 sh4 sparc64 \
-		$(if $(filter $(vendor), Ubuntu),, powerpc) \
-		$(if $(filter $(DEB_HOST_ARCH), amd64 i386), x32)
-    else ifeq ($(DEB_HOST_ARCH),arm64)
-      CROSS_ARCHS = x32 riscv64
-    else ifeq ($(DEB_HOST_ARCH),ppc64el)
-      CROSS_ARCHS = x32 riscv64 $(if $(filter $(vendor), Ubuntu),, powerpc)
-    else
-      CROSS_ARCHS =
-    endif
+  else
+    $(error Unknown source package $(SOURCE))
   endif
 endif
 
@@ -431,9 +449,6 @@ ifeq ($(with_native),yes)
   endif
   ifneq (,$(filter $(DEB_HOST_ARCH), $(amdgcn_archs)))
     all_packages += gcc-offload-amdgcn
-  endif
-  ifneq (,$(filter $(DEB_HOST_ARCH), $(brig_archs)))
-    all_packages += gccbrig
   endif
   ifneq (,$(filter $(DEB_HOST_ARCH), $(m2_archs)))
     all_packages += gm2
@@ -466,8 +481,7 @@ ifeq ($(with_native),yes)
     no_packages += gccgo gccgo-doc
   endif
 
-  gdc_no_archs = s390
-  ifneq (,$(filter $(DEB_HOST_ARCH),$(gdc_no_archs)))
+  ifeq (,$(filter $(DEB_HOST_ARCH),$(d_archs)))
     no_packages += gdc
   endif
 
@@ -476,7 +490,7 @@ ifeq ($(with_native),yes)
   endif
 
   ifeq (,$(filter $(DEB_HOST_ARCH),$(m2_archs)))
-    no_packages += gm2
+    no_packages += gm2 gm2-doc
   endif
 
   ifeq (,$(filter $(DEB_HOST_ARCH),$(hppa64_archs)))
@@ -507,12 +521,19 @@ endif
 
 # packages which are in the control file, but never built ...
 invalid_packages = \
+	gccgo-arc-linux-gnu \
 	gccgo-hppa-linux-gnu \
 	gccgo-m68k-linux-gnu \
 	gccgo-sh4-linux-gnu \
 	gccgo-multilib-arm-linux-gnueabi \
 	gccgo-multilib-arm-linux-gnueabihf \
+	gdc-alpha-linux-gnu \
+	gdc-arc-linux-gnu \
+	gdc-m68k-linux-gnu \
+	gdc-sh4-linux-gnu \
+	gdc-sparc64-linux-gnu \
 	gdc-multilib-arm-linux-gnueabi \
+	gdc-multilib-sparc64-linux-gnu \
 	gm2-powerpc-linux-gnu \
 	gm2-powerpc64-linux-gnu \
 	gm2-sh4-linux-gnu \
@@ -604,7 +625,6 @@ substvars-native:
 	  echo 'version:gnat=$(EPOCH):$(CV_GNAT)'; \
 	  echo 'version:gdc=$(CV_GDC)'; \
 	  echo 'version:gm2=$(CV_GM2)'; \
-	  echo 'version:brig=$(CV_BRIG)'; \
 	  echo 'version:offl=$(CV_OFFL)'; \
 	  echo 'pv:cpp=$(PV_CPP)'; \
 	  echo 'pv:gcc=$(PV_GCC)'; \
@@ -616,7 +636,6 @@ substvars-native:
 	  echo 'pv:gnat=$(PV_GNAT)'; \
 	  echo 'pv:gdc=$(PV_GDC)'; \
 	  echo 'pv:gm2=$(PV_GM2)'; \
-	  echo 'pv:brig=$(PV_BRIG)'; \
 	  echo 'pv:offl=$(PV_OFFL)'; \
 	  echo 'reqv:cpp=$(REQV_CPP)'; \
 	  echo 'reqv:gcc=$(REQV_GCC)'; \
@@ -628,7 +647,6 @@ substvars-native:
 	  echo 'reqv:gnat=$(REQV_GNAT)'; \
 	  echo 'reqv:gdc=$(REQV_GDC)'; \
 	  echo 'reqv:gm2=$(REQV_GM2)'; \
-	  echo 'reqv:brig=$(REQV_BRIG)'; \
 	  echo 'reqv:offl=$(REQV_OFFL)'; \
 	  echo 'gcc:triplet=gcc-$(subst _,-,$(DEB_HOST_GNU_TYPE)) (= $(EPOCH):$(CV_GCC))'; \
 	  echo 'gpp:triplet=g++-$(subst _,-,$(DEB_HOST_GNU_TYPE)) (= $(EPOCH):$(CV_GPP))'; \
@@ -733,13 +751,18 @@ ifeq ($(with_cross),yes)
 	    -e 's/@host_archs@/$(HOST_ARCHS_$(a))/g' \
 	    debian/control.cross.in \
 	    $(if $(filter $(a),$(multilib_archs)), debian/control.cross-ml.in) \
-	    | awk '/^Package: gccgo-(hppa|m68k|sh)/ {skip=1} skip == 0 {print } /^$$/ && skip == 1 {skip=0}' \
+	    | awk '/^Package: gccgo-(arc|hppa|m68k|sh4)/ {skip=1} skip == 0 {print } /^$$/ && skip == 1 {skip=0}' \
+	    | awk '/^Package: gdc-(alpha|arc|m68k|sh4|sparc64)/ {skip=1} skip == 0 {print } /^$$/ && skip == 1 {skip=0}' \
+	    | awk '/^Package: gdc-multilib-sparc64/ {skip=1} skip == 0 {print } /^$$/ && skip == 1 {skip=0}' \
 	    | awk '/^Package: gm2-(powerpc|powerpc64|sh4)-/ {skip=1} skip == 0 {print } /^$$/ && skip == 1 {skip=0}' \
 	    >> debian/control; \
 	)
 endif
 ifeq ($(SOURCE)-$(with_gfdl_docs),gcc-defaults-yes)
 	cat debian/control.doc >> debian/control
+endif
+ifeq ($(SOURCE),gcc-defaults)
+	cat debian/control.gm2-doc >> debian/control
 endif
 
 build-arch: build
@@ -806,7 +829,9 @@ ifeq ($(with_native),yes)
 	  /usr/bin/gcc-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc \
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/gcov \
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcov \
-	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/$(PV_GCC)/liblto_plugin.so /usr/lib/bfd-plugins/liblto_plugin.so \
+	  /usr/bin/lto-dump-$(PV_GCC) /usr/bin/lto-dump \
+	  /usr/bin/lto-dump-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-lto-dump \
+	  /usr/libexec/gcc/$(DEB_HOST_GNU_TYPE)/$(PV_GCC)/liblto_plugin.so /usr/lib/bfd-plugins/liblto_plugin.so \
 	  /usr/share/doc/gcc-$(PV_GCC)/README.Bugs /usr/share/doc/cpp/README.Bugs \
 	  $(if $(filter $(DEB_HOST_ARCH), $(gcc49_archs)),, \
 	    /usr/bin/gcov-dump-$(PV_GCC) /usr/bin/gcov-dump \
@@ -842,6 +867,7 @@ ifeq ($(with_native),yes)
 	  /usr/share/man/man1/gcc-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcc.1.gz \
 	  /usr/share/man/man1/gcov-$(PV_GCC).1.gz /usr/share/man/man1/gcov.1.gz \
 	  /usr/share/man/man1/gcov-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcov.1.gz \
+	  /usr/share/man/man1/lto-dump-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-lto-dump.1.gz \
 	  $(if $(filter $(DEB_HOST_ARCH), $(gcc49_archs)),, \
 	    /usr/share/man/man1/gcov-tool-$(PV_GCC).1.gz /usr/share/man/man1/gcov-tool.1.gz \
 	    /usr/share/man/man1/gcov-tool-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcov-tool.1.gz \
@@ -896,11 +922,17 @@ ifneq (,$(filter gm2, $(packages)))
 	dh_installdocs -pgm2 debian/README.Debian
 
 	dh_link -pgm2 \
-	  /usr/bin/gm2-$(PV_GDC) /usr/bin/gm2 \
-	  /usr/bin/gm2-$(PV_GDC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gm2
+	  /usr/bin/gm2-$(PV_GM2) /usr/bin/gm2 \
+	  /usr/bin/gm2-$(PV_GM2) /usr/bin/$(DEB_HOST_GNU_TYPE)-gm2
 	dh_link -pgm2 \
-	  /usr/share/man/man1/gm2-$(PV_GDC).1.gz /usr/share/man/man1/gm2.1.gz \
-	  /usr/share/man/man1/gm2-$(PV_GDC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gm2.1.gz
+	  /usr/share/man/man1/gm2-$(PV_GM2).1.gz /usr/share/man/man1/gm2.1.gz \
+	  /usr/share/man/man1/gm2-$(PV_GM2).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gm2.1.gz
+	: # gm2-doc
+	dh_installdirs -pgm2-doc \
+		usr/share/doc usr/share/info
+	dh_link -pgm2-doc \
+	  /usr/share/doc/gcc-$(PV_GM2)-base/gm2.html /usr/share/doc/gm2-doc/gm2.html \
+	  /usr/share/info/gm2-$(PV_GM2).info.gz /usr/share/info/gm2.info.gz
 endif
 
 ifneq (,$(filter gobjc, $(packages)))
@@ -979,19 +1011,6 @@ ifneq (,$(filter gccgo, $(packages)))
   endif
 endif
 
-ifneq (,$(filter gccbrig, $(packages)))
-	: # gccbrig
-	dh_installdirs -pgccbrig
-	dh_link -pgccbrig \
-	  /usr/share/doc/cpp /usr/share/doc/gccbrig \
-	  /usr/bin/gccbrig-$(PV_BRIG) /usr/bin/gccbrig \
-	  /usr/bin/gccbrig-$(PV_BRIG) /usr/bin/$(DEB_HOST_GNU_TYPE)-gccbrig \
-	  $(if $(filter yes, $(with_gfdl_docs)), \
-	    /usr/share/man/man1/gccbrig-$(PV_BRIG).1.gz /usr/share/man/man1/gccbrig.1.gz \
-	    /usr/share/man/man1/gccbrig-$(PV_BRIG).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gccbrig.1.gz \
-	  )
-endif
-
 ifneq (,$(filter gcc-offload-nvptx, $(packages)))
 	: # gcc-offload-nvptx
 	dh_installdirs -pgcc-offload-nvptx
@@ -1066,6 +1085,7 @@ install.%: pre-install
 	  /usr/share/doc/cpp-$(CROSS_PKG_GNU_TYPE) /usr/share/doc/gcc-$(CROSS_PKG_GNU_TYPE) \
 	  /usr/bin/$(CROSS_GNU_TYPE)-gcc-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcc \
 	  /usr/bin/$(CROSS_GNU_TYPE)-gcov-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov \
+	  /usr/bin/$(CROSS_GNU_TYPE)-lto-dump-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-lto-dump \
 	  /usr/share/doc/gcc-$(PV_GCC)-$(CROSS_PKG_GNU_TYPE)-base/README.Bugs /usr/share/doc/cpp-$(CROSS_PKG_GNU_TYPE)/README.Bugs \
 	  $(if $(filter $(CROSS_ARCH), $(gcc49_archs)),, \
 	    /usr/bin/$(CROSS_GNU_TYPE)-gcov-dump-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov-dump \
@@ -1091,6 +1111,7 @@ install.%: pre-install
 	  dh_link -pgcc-$(CROSS_PKG_GNU_TYPE) \
 	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcc-$(PV_GCC_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcc.1.gz \
 	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov-$(PV_GCC_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov.1.gz \
+	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-lto-dump-$(PV_GCC_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-lto-dump.1.gz \
 	    $(if $(filter $(CROSS_ARCH), $(gcc49_archs)),, \
 	      /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov-tool-$(PV_GCC_$(CROSS_ARCH)).1.gz \
 	      /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov-tool.1.gz \
@@ -1253,6 +1274,18 @@ ifeq ($(with_gfdl_docs),yes)
 	    debian/$$i/usr/share/doc/$$i/changelog.Debian; \
 	done
 endif
+	rm -rf debian/gm2-doc
+	dh_installdocs -pgm2-doc
+	dh_installchangelogs -pgm2-doc
+	for i in gm2-doc; do \
+	  mv debian/$$i/usr/share/doc/$$i/changelog \
+	    debian/$$i/usr/share/doc/$$i/changelog.Debian; \
+	done
+	mkdir -p debian/gm2-doc/usr/share/info
+	ln -sf gm2-$(PV_GM2).info.gz debian/gm2-doc/usr/share/info/gm2.info.gz
+	mkdir -p debian/gm2-doc/usr/share/doc/gcc-$(PV_GCC)-base/m2
+	ln -sf gm2-$(PV_GM2).html debian/gm2-doc/usr/share/doc/gcc-$(PV_GCC)-base/m2/gm2.html
+
 ifneq (,$(filter gcc-hppa64-linux-gnu, $(packages)))
 	dh_installdocs -pgcc-hppa64-linux-gnu
 	dh_installchangelogs -pgcc-hppa64-linux-gnu
@@ -1285,12 +1318,12 @@ endif
 
 	for p in $$(dh_listpackages -a); do \
 	  case $$p in \
-	    cpp|g++|gcc|gccgo|gfortran|gccbrig|gcc-hppa64-linux-gnu|gcc-offload-*) \
+	    cpp|g++|gcc|gccgo|gfortran|gcc-hppa64-linux-gnu|gcc-offload-*) \
 	      [ "$(with_gfdl_docs)" = yes ] && continue; \
 	      mkdir -p -m 755 debian/$$p/usr/share/lintian/overrides; \
 	      echo "$$p binary: no-manual-page" \
 	        >> debian/$$p/usr/share/lintian/overrides/$$p;; \
-	    cpp-doc|gcc-doc|gccgo-doc|gfortran-doc) \
+	    cpp-doc|gcc-doc|gccgo-doc|gfortran-doc|gm2-doc) \
 	      mkdir -p -m 755 debian/$$p/usr/share/lintian/overrides; \
 	      echo "$$p binary: documentation-package-not-architecture-independent" \
 	        >> debian/$$p/usr/share/lintian/overrides/$$p;; \
@@ -1314,7 +1347,7 @@ ifneq (,$(filter libgphobos-dev, $(packages)))
 	dh_gencontrol -plibgphobos-dev -u-v$(CV_GDC)
 endif
 ifneq (,$(filter gm2, $(packages)))
-	dh_gencontrol -pgm2 \
+	dh_gencontrol -pgm2 -pgm2-doc \
 	  -u-v$(EPOCH):$(CV_GM2)
 endif
 ifneq (,$(filter g++, $(packages)))
@@ -1339,10 +1372,6 @@ ifneq (,$(filter gccgo, $(packages)))
 	  $(if $(filter yes,$(with_go_multilib)),-pgccgo-multilib) \
 	  $(if $(filter yes, $(with_gfdl_docs)),-pgccgo-doc) \
 	  -u-v$(EPOCH):$(CV_GGO)
-endif
-ifneq (,$(filter gccbrig, $(packages)))
-	dh_gencontrol -pgccbrig \
-	  -u-v$(EPOCH):$(CV_BRIG)
 endif
 ifneq (,$(filter gcc-offload-nvptx, $(packages)))
 	dh_gencontrol -pgcc-offload-nvptx \
