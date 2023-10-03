@@ -50,14 +50,14 @@ similar.
 The default compiler versions for Debian GNU/Linux on amd64 are
 (minor version numbers omitted):
 
-	cpp		: cpp-11
-	gcc		: gcc-11
-	g++		: g++-11
-	gfortran	: gfortran-11
-	gccgo		: gccgo-11
-	gobjc		: gobjc-11
-	gobjc++		: gobjc++-11
-	gdc		: gdc-11
+	cpp		: cpp-12
+	gcc		: gcc-12
+	g++		: g++-12
+	gfortran	: gfortran-12
+	gccgo		: gccgo-12
+	gobjc		: gobjc-12
+	gobjc++		: gobjc++-12
+	gdc		: gdc-12
 
 Most of the documentation for GCC including the manual pages is
 licensed under the GFDL and therefore not included in the main section.
